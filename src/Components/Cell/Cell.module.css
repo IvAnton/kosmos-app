@@ -1,0 +1,23 @@
+.Cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    margin: 5px;
+    background: white;
+}
+
+.empty {
+    background: aqua;
+}
+
+.cow {
+    background: gray;
+}
+
+.wheat {
+    background: greenyellow;
+}
+
+.chicken {
+    background: yellow;
+}
