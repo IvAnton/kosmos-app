@@ -11,13 +11,18 @@
 }
 
 .cow {
-    background: gray;
+    background: linear-gradient(90deg, rgba(3,3,3,1) 0%, rgba(246,249,250,1) 100%);
 }
 
 .wheat {
-    background: greenyellow;
+    background: wheat;
+}
+
+.wheat.success {
+    background: gray;
 }
 
 .chicken {
     background: yellow;
 }
+

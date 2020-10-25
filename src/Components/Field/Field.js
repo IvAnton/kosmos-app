@@ -1,37 +1,47 @@
 import React from "react";
 import classes from './Field.module.css'
 import Cell from '../Cell/Cell'
-import {EMPTY} from "../Cell/cellTypes";
+import {connect} from 'react-redux'
+import {clickOnCell} from "../../redux/actions/actions";
 
 class Field extends React.Component {
-    state = {
-        cells: []
-    }
-
-    constructor(props) {
-        super(props);
-        const cells = []
-        const countCells = 64
-        for (let i = 0; i < countCells; i++) {
-            cells.push({
-                type: EMPTY,
-                id: i
-            })
-        }
-        this.state.cells = cells
+    componentDidMount() {
+        console.log(this.props)
     }
 
     render() {
         return (
             <div className={classes.Fields}>
-                {this.state.cells.map((cell, index) => {
-                    return (
-                        <Cell type={cell.type} key={index} />
-                    )
-                })}
+                {
+                    this.props.cells
+                        ? this.props.cells.map((cell) => {
+                            return (
+                                <Cell
+                                    type={cell.type}
+                                    key={cell.id}
+                                    id={cell.id}
+                                    isGrown={cell.isGrown}
+                                    cellClick={this.props.clickOnCell}
+                                />
+                            )
+                        })
+                        : null
+                }
             </div>
         )
     }
 }
 
-export default Field
+function mapStateToProps(state) {
+    return {
+        cells: state.cells
+    }
+}
+
+function mapDispatchProps(dispatch) {
+    return {
+        clickOnCell: id => dispatch(clickOnCell(id))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Field)
