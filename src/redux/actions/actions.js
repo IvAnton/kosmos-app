@@ -9,7 +9,7 @@ export function clickOnCell(id) {
         if(cell.isGrown && cell.type === WHEAT) {
             cell.type = EMPTY
             cell.isGrown = false
-        } else {
+        } else if (state.currentCell !== cell.type){
             switch (state.currentCell) {
                 case WHEAT:
                     cell.type = WHEAT
@@ -22,7 +22,6 @@ export function clickOnCell(id) {
                     cell.type = CHICKEN
                     break
                 default:
-
                     break
             }
         }
@@ -62,7 +61,6 @@ function wheatHasGrown(id) {
 
 
 export function selectCell(name) {
-    console.log(name)
     return {
         type: SELECT_CELL,
         name

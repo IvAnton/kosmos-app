@@ -4,6 +4,7 @@
     border: 1px solid black;
     margin: 5px;
     background: white;
+    border-radius: 5px;
 }
 
 .empty {
