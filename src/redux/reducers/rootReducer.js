@@ -1,8 +1,9 @@
 import {EMPTY} from "../../Components/Cell/cellTypes";
-import {EDIT_CELL} from "../actions/actionTypes";
+import {EDIT_CELL, SELECT_CELL} from "../actions/actionTypes";
 
 const initialState = {
-    cells: getDefaultCells()
+    cells: getDefaultCells(),
+    currentCell: null
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -12,6 +13,10 @@ export default function rootReducer(state = initialState, action) {
             cells[action.cell.id] = action.cell
             return {
                 ...state, cells: [...cells]
+            }
+        case SELECT_CELL:
+            return {
+                ...state, currentCell: action.name
             }
         default:
             return state

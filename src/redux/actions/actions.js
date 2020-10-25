@@ -1,26 +1,30 @@
-import {EDIT_CELL} from "./actionTypes";
+import {EDIT_CELL, SELECT_CELL} from "./actionTypes";
 import {CHICKEN, COW, EMPTY, WHEAT} from "../../Components/Cell/cellTypes";
 
 export function clickOnCell(id) {
     return (dispatch, getState) => {
         const state = getState()
         const cell = state.cells[id]
-        cell.isGrown = false
 
-        switch(cell.type) {
-            case EMPTY:
-                cell.type = COW
-                break
-            case COW:
-                cell.type = CHICKEN
-                break
-            case CHICKEN:
-                cell.type = WHEAT
-                dispatch(wheatGrow(id))
-                break
-            default:
-                cell.type = EMPTY
-                break
+        if(cell.isGrown && cell.type === WHEAT) {
+            cell.type = EMPTY
+            cell.isGrown = false
+        } else {
+            switch (state.currentCell) {
+                case WHEAT:
+                    cell.type = WHEAT
+                    dispatch(wheatGrow(id))
+                    break
+                case COW:
+                    cell.type = COW
+                    break
+                case CHICKEN:
+                    cell.type = CHICKEN
+                    break
+                default:
+
+                    break
+            }
         }
         dispatch(editCell(cell))
     }
@@ -37,7 +41,7 @@ function wheatGrow(id) {
     return (dispatch, getState) => {
         const timer = setTimeout(() => {
             dispatch(wheatHasGrown(id))
-        },1000)
+        },3000)
         const cell = getState().cells[id]
         cell.timer = timer
         dispatch(editCell(cell))
@@ -55,3 +59,13 @@ function wheatHasGrown(id) {
         dispatch(editCell(cell))
     }
 }
+
+
+export function selectCell(name) {
+    console.log(name)
+    return {
+        type: SELECT_CELL,
+        name
+    }
+}
+
