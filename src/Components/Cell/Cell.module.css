@@ -5,6 +5,7 @@
     margin: 5px;
     background: white;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .empty {

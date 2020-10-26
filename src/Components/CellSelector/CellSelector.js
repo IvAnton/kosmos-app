@@ -5,6 +5,13 @@ import {selectCell} from "../../redux/actions/actions";
 import {connect} from "react-redux";
 
 class CellSelector extends React.Component {
+    getClassesCell(type) {
+        const cls = [classes.cell, classes[type]]
+        if(this.props.currentCell === type) {
+            cls.push(classes.selected)
+        }
+        return cls.join(' ')
+    }
     render() {
         return (
             <React.Fragment>
@@ -12,19 +19,19 @@ class CellSelector extends React.Component {
                     <h2>Магазин</h2>
                     <div className={classes.CellSelector}>
                         <div
-                            className={`${classes.cell} ${classes[WHEAT]}`}
+                            className={this.getClassesCell(WHEAT)}
                             onClick={() => this.props.selectCell(WHEAT)}
                         >
                             Пшено
                         </div>
                         <div
-                            className={`${classes.cell} ${classes[COW]}`}
+                            className={this.getClassesCell(COW)}
                             onClick={() => this.props.selectCell(COW)}
                         >
                             Корова
                         </div>
                         <div
-                            className={`${classes.cell} ${classes[CHICKEN]}`}
+                            className={this.getClassesCell(CHICKEN)}
                             onClick={() => this.props.selectCell(CHICKEN)}
                         >
                             Курица

@@ -1,3 +1,11 @@
 export const EDIT_CELL = 'EDIT_CELL'
 export const SELECT_CELL = 'SELECT_CELL'
+export const SELL_EGGS = 'SELL_EGGS'
+export const SELL_MILK = 'SELL_MILK'
+export const ADD_WHEAT = 'ADD_WHEAT'
+export const BUY_PRODUCT = 'BUY_PRODUCT'
+export const SELL_PRODUCT = 'SELL_PRODUCT'
+export const COW_GIVE_MILK = 'COW_GIVE_MILK'
+export const EAT_WHEAT = 'EAT_WHEAT'
+export const CHICKEN_GIVE_EGG = 'CHICKEN_GIVE_EGG'
 

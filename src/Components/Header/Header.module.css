@@ -1,9 +1,41 @@
 .Header {
-    height: 30px;
+    padding: 10px 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
 
-    background: green;
+    background: cadetblue;
+}
+
+.counter {
+    margin: 0 15px;
+    padding: 2px 5px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+.counter h2 {
+    margin: 0 0 5px;
+    font-weight: bold;
+}
+
+.money {
+    color: gold;
+    cursor: default;
+}
+.wheat {
+    color: wheat;
+}
+
+.eggs {
+    color: coral;
+}
+
+.milk {
+    color: white;
 }

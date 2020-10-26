@@ -25,11 +25,15 @@
     width: 50px;
     height: 50px;
     margin: 0 2px;
-    border: 1px solid black;
+    border: 2px dotted black;
     text-align: center;
     font-weight: bold;
     font-size: 12px;
     border-radius: 5px;
+    cursor: pointer;
+}
+.cell.selected {
+    border: 3px solid gold;
 }
 
 .wheat {
@@ -47,4 +51,5 @@
 
 .cancel {
     background: red;
+    border: 2px solid black;
 }
