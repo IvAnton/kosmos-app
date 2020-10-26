@@ -20,6 +20,11 @@ export function clickOnCell(id) {
             cell.isGrown = false
             dispatch(addWheat())
         } else if (state.currentCell !== cell.type){
+            if (cell.timer) {
+                clearInterval(cell.timer)
+                cell.progress = 0
+                cell.timer = null
+            }
             switch (state.currentCell) {
                 case WHEAT:
                     cell.type = WHEAT
@@ -59,11 +64,18 @@ function addWheat() {
 
 function wheatGrow(id) {
     return (dispatch, getState) => {
-        const timer = setTimeout(() => {
-            dispatch(wheatHasGrown(id))
-        },10000)
         const cell = getState().cells[id]
-        cell.timer = timer
+        let progressCounter = 0
+        const endProgress = 10
+        cell.timer = setInterval(() => {
+            if(progressCounter === endProgress) {
+                dispatch(wheatHasGrown(id))
+            } else {
+                progressCounter = progressCounter + 1
+                cell.progress = getProgress(progressCounter, endProgress)
+                dispatch(editCell(cell))
+            }
+        },1000)
         dispatch(editCell(cell))
     }
 }
@@ -74,8 +86,10 @@ function wheatHasGrown(id) {
         if(!cell.timer) {
             return
         }
-        clearTimeout(cell.timer)
+        clearInterval(cell.timer)
         cell.isGrown = true
+        cell.progress = 0
+        cell.timer = null
         dispatch(editCell(cell))
     }
 }
@@ -83,13 +97,28 @@ function wheatHasGrown(id) {
 function cowProducesMilk(id) {
     return (dispatch, getState) => {
         const cell = getState().cells[id]
+        let progressCounter = 0
+        const endProgress = 20
+        let isHungry = true
         cell.timer = setInterval(() => {
             const wheat = getState().wheat
-            if (wheat) {
-                dispatch(eatWheat())
+            if (progressCounter === 0 && isHungry) {
+                if (wheat) {
+                    dispatch(eatWheat())
+                    isHungry = false
+                }
+            } else if (progressCounter === endProgress) {
                 dispatch(cowGiveMilk())
+                progressCounter = 0
+                cell.progress = getProgress(progressCounter, endProgress)
+                dispatch(editCell(cell))
+                isHungry = true
+            } else {
+                progressCounter = progressCounter + 1
+                cell.progress = getProgress(progressCounter, endProgress)
+                dispatch(editCell(cell))
             }
-        }, 20000)
+        }, 1000)
         dispatch(editCell(cell))
     }
 }
@@ -103,19 +132,39 @@ function cowGiveMilk() {
 function chickenProducesEggs(id) {
     return (dispatch, getState) => {
         const cell = getState().cells[id]
-        let eatCounter = 0
+        let progressCounter = 0
+        const endProgress = 30
+        let isHungry = true
+
         cell.timer = setInterval(() => {
-            const wheat = getState().wheat
-            if (eatCounter !== 0) {
-                dispatch(chickenGiveEgg())
-                eatCounter = eatCounter - 1
-            } else {
-                if (wheat) {
+            cell.progress = getProgress(progressCounter, endProgress)
+            dispatch(editCell(cell))
+            if (isHungry) {
+                const wheat = getState().wheat
+                if(wheat){
                     dispatch(eatWheat())
-                    eatCounter = 3
+                    isHungry = false
+                }
+            } else {
+                progressCounter = progressCounter + 1
+                if (progressCounter === (endProgress / 3) || progressCounter === ((endProgress / 3) * 2)) {
+                    dispatch(chickenGiveEgg())
+                } else if (progressCounter === endProgress) {
+                    dispatch(chickenGiveEgg())
+                    progressCounter = 0
+                    isHungry = true
                 }
             }
-        }, 10000)
+            // if (eatCounter !== 0) {
+            //     dispatch(chickenGiveEgg())
+            //     eatCounter = eatCounter - 1
+            // } else {
+            //     if (wheat) {
+            //         dispatch(eatWheat())
+            //         eatCounter = 3
+            //     }
+            // }
+        }, 1000)
         dispatch(editCell(cell))
     }
 }
@@ -151,4 +200,8 @@ function buyProduct(product) {
         type: BUY_PRODUCT,
         product
     }
+}
+
+function getProgress(currentValue, maxValue) {
+    return (100 / maxValue) * currentValue
 }

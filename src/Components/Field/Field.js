@@ -22,6 +22,7 @@ class Field extends React.Component {
                                     id={cell.id}
                                     isGrown={cell.isGrown}
                                     cellClick={this.props.clickOnCell}
+                                    progress={cell.progress}
                                 />
                             )
                         })

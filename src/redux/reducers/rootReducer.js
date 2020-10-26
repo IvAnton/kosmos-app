@@ -79,7 +79,8 @@ function getDefaultCells() {
             type: EMPTY,
             id: i,
             isGrown: false,
-            timer: null
+            timer: null,
+            progress: 0
         })
     }
     return cells

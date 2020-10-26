@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './Cell.module.css'
-
+import CircularProgress  from '@material-ui/core/CircularProgress'
 
 class Cell extends React.Component {
 
@@ -14,13 +14,13 @@ class Cell extends React.Component {
             cls.push(
                 classes.success
             )
-
         }
         return (
             <div
                 className={cls.join(' ')}
                 onClick={() => this.props.cellClick(this.props.id)}
             >
+                <CircularProgress variant={'static'} value={this.props.progress} />
             </div>
         )
     }
