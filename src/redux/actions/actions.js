@@ -42,6 +42,7 @@ export function clickOnCell(id) {
                     dispatch(chickenProducesEggs(id))
                     break
                 default:
+                    cell.type = EMPTY
                     break
             }
         }
