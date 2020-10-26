@@ -83,14 +83,13 @@ function wheatHasGrown(id) {
 function cowProducesMilk(id) {
     return (dispatch, getState) => {
         const cell = getState().cells[id]
-        const timer = setInterval(() => {
+        cell.timer = setInterval(() => {
             const wheat = getState().wheat
-            if(wheat){
+            if (wheat) {
                 dispatch(eatWheat())
                 dispatch(cowGiveMilk())
             }
-        },20000)
-        cell.timer = timer
+        }, 20000)
         dispatch(editCell(cell))
     }
 }
@@ -105,19 +104,18 @@ function chickenProducesEggs(id) {
     return (dispatch, getState) => {
         const cell = getState().cells[id]
         let eatCounter = 0
-        const timer = setInterval(() => {
+        cell.timer = setInterval(() => {
             const wheat = getState().wheat
-            if(eatCounter !== 0) {
+            if (eatCounter !== 0) {
                 dispatch(chickenGiveEgg())
                 eatCounter = eatCounter - 1
             } else {
-                if(wheat) {
+                if (wheat) {
                     dispatch(eatWheat())
                     eatCounter = 3
                 }
             }
-        },10000)
-        cell.timer = timer
+        }, 10000)
         dispatch(editCell(cell))
     }
 }
