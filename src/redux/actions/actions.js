@@ -145,6 +145,7 @@ function chickenProducesEggs(id) {
                 if(wheat){
                     dispatch(eatWheat())
                     isHungry = false
+                    progressCounter = progressCounter + 1
                 }
             } else {
                 progressCounter = progressCounter + 1
@@ -156,15 +157,6 @@ function chickenProducesEggs(id) {
                     isHungry = true
                 }
             }
-            // if (eatCounter !== 0) {
-            //     dispatch(chickenGiveEgg())
-            //     eatCounter = eatCounter - 1
-            // } else {
-            //     if (wheat) {
-            //         dispatch(eatWheat())
-            //         eatCounter = 3
-            //     }
-            // }
         }, 1000)
         dispatch(editCell(cell))
     }
