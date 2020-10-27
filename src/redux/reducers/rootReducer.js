@@ -12,7 +12,7 @@ import {
 const initialState = {
     cells: getDefaultCells(),
     currentCell: null,
-    money: 50,
+    money: 100,
     wheat: 10,
     milk: 10,
     eggs: 10
