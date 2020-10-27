@@ -13,9 +13,9 @@ const initialState = {
     cells: getDefaultCells(),
     currentCell: null,
     money: 100,
-    wheat: 10,
-    milk: 10,
-    eggs: 10
+    wheat: 0,
+    milk: 0,
+    eggs: 0
 }
 
 export const PRICE = {
