@@ -1,4 +1,4 @@
-My game: [https://iva.itrus.su](iva.itrus.su)
+My game: [https://iva.itrus.su](https://iva.itrus.su)
 
 ## Available Scripts
 
