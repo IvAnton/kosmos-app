@@ -6,6 +6,7 @@
     margin: 10px 0 0;
 }
 .container h2 {
+    color: white;
     font-weight: bold;
     font-size: 16px;
     margin: 5px 0;
@@ -26,30 +27,36 @@
     height: 50px;
     margin: 0 2px;
     border: 2px dotted black;
-    text-align: center;
-    font-weight: bold;
-    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
+
+    color: gold;
+    font-size:24px ;
+    text-align: center;
+    font-weight: bold;
 }
 .cell.selected {
     border: 3px solid gold;
 }
 
 .wheat {
-    background: wheat;
+    background: saddlebrown url("../../images/wheat.png") center;
+    background-size: 50px 50px;
 }
 
 .cow {
-    color: red;
-    background: linear-gradient(90deg, rgba(3, 3, 3, 1) 0%, rgba(246, 249, 250, 1) 100%);
+    background: saddlebrown url("../../images/cow.png") center;
+    background-size: 50px 50px;
 }
 
 .chicken {
-    background: yellow;
+    background: saddlebrown url("../../images/chicken.png") center;
+    background-size: 50px 50px;
 }
 
 .cancel {
+    color: black;
     background: red;
     border: 2px solid black;
+    line-height: 40px;
 }

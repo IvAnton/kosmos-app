@@ -9,6 +9,7 @@ import {
     SELL_PRODUCT
 } from "./actionTypes";
 import {CHICKEN, COW, EMPTY, WHEAT} from "../../Components/Cell/cellTypes";
+import {PRICE} from "../reducers/rootReducer";
 
 export function clickOnCell(id) {
     return (dispatch, getState) => {
@@ -20,6 +21,9 @@ export function clickOnCell(id) {
             cell.isGrown = false
             dispatch(addWheat())
         } else if (state.currentCell !== cell.type){
+            if (state.money < PRICE.buy[state.currentCell]){
+                return;
+            }
             if (cell.timer) {
                 clearInterval(cell.timer)
                 cell.progress = 0

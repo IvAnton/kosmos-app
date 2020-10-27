@@ -3,12 +3,13 @@
     height: 50px;
     border: 1px solid black;
     margin: 5px;
-    background: white;
     border-radius: 5px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+
+
 }
 
 .empty {
@@ -16,18 +17,23 @@
 }
 
 .cow {
-    background: linear-gradient(90deg, rgba(3,3,3,1) 0%, rgba(246,249,250,1) 100%);
+    background-image: url("../../images/cow.png");
+    background-position: center;
+    background-size: 50px 50px;
 }
 
 .wheat {
-    background: wheat;
+    background: url("../../images/wheat.png") center;
+    background-size: 50px 50px;
 }
 
 .wheat.success {
-    background: gray;
+    background: url("../../images/wheat-grown.png") center;
+    background-size: 50px 50px;
 }
 
 .chicken {
-    background: yellow;
+    background: url("../../images/chicken.png") center;
+    background-size: 50px 50px;
 }
 

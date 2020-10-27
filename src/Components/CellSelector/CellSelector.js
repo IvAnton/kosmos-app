@@ -3,6 +3,7 @@ import classes from './CellSelector.module.css'
 import {CHICKEN, COW, WHEAT} from "../Cell/cellTypes";
 import {selectCell} from "../../redux/actions/actions";
 import {connect} from "react-redux";
+import {PRICE} from "../../redux/reducers/rootReducer";
 
 class CellSelector extends React.Component {
     getClassesCell(type) {
@@ -22,25 +23,25 @@ class CellSelector extends React.Component {
                             className={this.getClassesCell(WHEAT)}
                             onClick={() => this.props.selectCell(WHEAT)}
                         >
-                            Пшено
+                            {PRICE.buy.wheat}
                         </div>
                         <div
                             className={this.getClassesCell(COW)}
                             onClick={() => this.props.selectCell(COW)}
                         >
-                            Корова
+                            {PRICE.buy.cow}
                         </div>
                         <div
                             className={this.getClassesCell(CHICKEN)}
                             onClick={() => this.props.selectCell(CHICKEN)}
                         >
-                            Курица
+                            {PRICE.buy.chicken}
                         </div>
                         <div
                             className={`${classes.cell} ${classes.cancel}`}
                             onClick={() => this.props.selectCell(null)}
                         >
-                            Отмена
+                            X
                         </div>
                     </div>
                 </div>

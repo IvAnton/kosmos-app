@@ -2,6 +2,10 @@ import React from "react";
 import classes from './Header.module.css'
 import {connect} from 'react-redux'
 import {sellProduct} from "../../redux/actions/actions";
+import money from '../../images/money.png'
+import milk from '../../images/milk.png'
+import wheat from '../../images/wheat-grown.png'
+import eggs from '../../images/eggs.png'
 
 const products = {
     eggs: 'eggs',
@@ -17,28 +21,28 @@ class Header extends React.Component {
                 <div
                     className={[classes.counter, classes.money].join(' ')}
                 >
-                    <h2>Деньги</h2>
+                    <img src={money} alt="Деньги"/>
                     {this.props.money}
                 </div>
                 <div
                     className={[classes.counter, classes.wheat].join(' ')}
                     onClick={() => this.props.sellProduct(products.wheat)}
                 >
-                    <h2>Пшено</h2>
+                    <img src={wheat} alt="Деньги"/>
                     {this.props.wheat}
                 </div>
                 <div
                     className={[classes.counter, classes.eggs].join(' ')}
                     onClick={() => this.props.sellProduct(products.eggs)}
                 >
-                    <h2>Яйца</h2>
+                    <img src={eggs} alt="Деньги"/>
                     {this.props.eggs}
                 </div>
                 <div
                     className={[classes.counter, classes.milk].join(' ')}
                     onClick={() => this.props.sellProduct(products.milk)}
                 >
-                    <h2>Молоко</h2>
+                    <img src={milk} alt="Деньги"/>
                     {this.props.milk}
                 </div>
             </div>

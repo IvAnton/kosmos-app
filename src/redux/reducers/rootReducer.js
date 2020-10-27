@@ -12,13 +12,13 @@ import {
 const initialState = {
     cells: getDefaultCells(),
     currentCell: null,
-    money: 10000,
+    money: 50,
     wheat: 10,
     milk: 10,
     eggs: 10
 }
 
-const price = {
+export const PRICE = {
     buy: {
         wheat: 15,
         chicken: 30,
@@ -61,11 +61,11 @@ export default function rootReducer(state = initialState, action) {
             }
         case SELL_PRODUCT:
             return {
-               ...state, money: state.money + (price.sell[action.product] * state[action.product]), [action.product]: 0
+               ...state, money: state.money + (PRICE.sell[action.product] * state[action.product]), [action.product]: 0
             }
         case BUY_PRODUCT:
             return {
-                ...state, money: state.money - price.buy[action.product]
+                ...state, money: state.money - PRICE.buy[action.product]
             }
         default:
             return state
